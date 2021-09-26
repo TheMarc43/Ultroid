@@ -75,7 +75,7 @@ async def down(event):
 )
 async def download(event):
     if not event.reply_to_msg_id:
-        return await eor(event, "`Reply to a Media Message`")
+        return await eor(event, get_string("cvt_3"))
     xx = await eor(event, get_string("com_1"))
     s = dt.now()
     k = time.time()
