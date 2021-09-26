@@ -26,7 +26,7 @@ async def dm(e):
     try:
         chat_id = await get_user_id(chat)
     except Exception as ex:
-        return await eor(e, "`" + str(ex) + "`", time=5)
+        return await eor(e, f"`{ex}`", time=5)
     if e.reply_to:
         msg = await e.get_reply_message()
     elif len(e.text.split()) > 2:
@@ -37,14 +37,14 @@ async def dm(e):
         await e.client.send_message(chat_id, msg)
         await eor(e, "`⚜️Message Delivered!⚜️`", time=5)
     except Exception as m:
-        await eor(e, f"Error - {m}\nRead Usage : `{HNDLR}help dm`", time=5)
+        await eor(e, get_string("dm_4").format(m, HNDLR), time=5)
 
 
 @ultroid_cmd(pattern="fwdreply ?(.*)", fullsudo=True)
 async def _(e):
     message = e.pattern_match.group(1)
     if not e.reply_to_msg_id:
-        return await eor(e, "`Reply to someone's msg.`", time=5)
+        return await eor(e, get_string("ex_1"), time=5)
     if not message:
         return await eor(e, "`No message found to deliver :(`", time=5)
     msg = await e.get_reply_message()
