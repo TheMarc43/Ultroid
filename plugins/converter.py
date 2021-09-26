@@ -63,7 +63,7 @@ async def _(e):
     nn = "https://telegra.ph" + variable[0]
     udB.set("CUSTOM_THUMBNAIL", str(nn))
     await bash(f"wget {nn} -O resources/extras/ultroid.jpg")
-    await eor(e, f"Added [This]({nn}) As Your Custom Thumbnail", link_preview=False)
+    await eor(e, get_string("cvt_6")).format(nn), link_preview=False)
 
 
 @ultroid_cmd(
@@ -111,7 +111,7 @@ async def imak(event):
 async def imak(event):
     reply = await event.get_reply_message()
     if not (reply and (reply.media)):
-        await eor(event, "Reply to any media.")
+        await eor(event, get_string("cvt_3"))
         return
     xx = await eor(event, get_string("com_1"))
     image = await reply.download_media()
@@ -163,7 +163,7 @@ async def _(event):
     xx = await eor(event, get_string("com_1"))
     a = await event.get_reply_message()
     if not a.message:
-        return await xx.edit("`Reply to a message`")
+        return await xx.edit(get_string("ex_1"))
     with open(input_str, "w") as b:
         b.write(str(a.message))
     await xx.edit(f"**Packing into** `{input_str}`")
