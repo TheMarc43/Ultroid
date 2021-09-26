@@ -44,15 +44,14 @@ from . import *
     pattern="sysinfo$",
 )
 async def _(e):
-    xx = await eor(e, "`Sending...`")
+    xx = await eor(e, get_string("com_1"))
     x, y = await bash("neofetch|sed 's/\x1B\\[[0-9;\\?]*[a-zA-Z]//g' >> neo.txt")
     with open("neo.txt", "r") as neo:
         p = (neo.read()).replace("\n\n", "")
     ok = Carbon(base_url="https://carbonara.vercel.app/api/cook", code=p)
-    haa = await ok.save("neofetch")
+    haa = await ok.memorize("neofetch")
     await e.reply(file=haa)
     await xx.delete()
-    remove("neofetch.jpg")
     remove("neo.txt")
 
 
